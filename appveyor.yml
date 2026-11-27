@@ -6,7 +6,7 @@ environment:
   PYTHON: "C:\\Python312-x64"
   PATH: 'C:\Python312-x64;C:\Python312-x64\Scripts;%USERPROFILE%\.cargo\bin;%PATH%'
 install:
-  - ps: $env:PATH = "$env:PYTHON;$env:PYTHON\\Scripts;$env:PATH"
+  - ps: $env:PATH = "$env:PYTHON;$env:PYTHON\Scripts;$env:PATH"
   - python --version
   - pip --version
   - git clone --depth 1 https://github.com/open-jarvis/OpenJarvis.git upstream
@@ -18,7 +18,7 @@ install:
   - python -m pip install pyinstaller
   - cd upstream && python -m pip install .
 build_script:
-  - cd upstream && python -m PyInstaller --onefile --console --name OpenJarvis --hidden-import openjarvis.cli --hidden-import click --collect-all openjarvis src/openjarvis/cli/__main__.py
+  - 'python -m PyInstaller --onefile --console --name OpenJarvis --hidden-import openjarvis.cli --hidden-import click --collect-all openjarvis --distpath "%APPVEYOR_BUILD_FOLDER%\upstream\dist" --workpath "%APPVEYOR_BUILD_FOLDER%\upstream\build" "%APPVEYOR_BUILD_FOLDER%\upstream\src\openjarvis\cli\__main__.py"'
 artifacts:
   - path: upstream/dist/OpenJarvis.exe
     name: OpenJarvis-exe
