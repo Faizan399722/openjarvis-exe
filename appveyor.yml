@@ -4,7 +4,7 @@ platform: x64
 clone_depth: 1
 environment:
   PYTHON: "C:\Python312-x64"
-  PATH: 'C\Python312-x64;C:\Python312-x64\Scripts;%USERPROFILE%\.cargo\bin;%PATH%'
+  PATH: 'C:\Python312-x64;C:\Python312-x64\Scripts;%USERPROFILE%\.cargo\bin;%PATH%'
 install:
   - ps: $env:PATH = "$env:PYTHON;$env:PYTHON\Scripts;$env:PATH"
   - python --version
