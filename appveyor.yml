@@ -4,11 +4,16 @@ platform: x64
 clone_depth: 1
 environment:
   PYTHON: "C:\Python312-x64"
+  PATH: "C:\Python312-x64;C:\Python312-x64\Scripts;%USERPROFILE%\.cargo\bin;%PATH%"
 install:
   - ps: $env:PATH = "$env:PYTHON;$env:PYTHON\Scripts;$env:PATH"
   - python --version
   - pip --version
   - git clone --depth 1 https://github.com/open-jarvis/OpenJarvis.git upstream
+  - ps: Invoke-WebRequest -Uri https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile $env:TEMP\rustup-init.exe
+  - cmd: "%TEMP%\rustup-init.exe -y --default-toolchain stable --profile minimal"
+  - cargo --version
+  - rustc --version
   - python -m pip install -U pip
   - python -m pip install pyinstaller
   - cd upstream && python -m pip install .
