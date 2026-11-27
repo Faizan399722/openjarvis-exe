@@ -10,9 +10,9 @@ install:
   - pip --version
   - git clone --depth 1 https://github.com/open-jarvis/OpenJarvis.git upstream
   - cd upstream
-  - pip install -U pip
-  - pip install pyinstaller
-  - pip install .
+  - python -m pip install -U pip
+  - python -m pip install pyinstaller
+  - python -m pip install .
 build_script:
   - cd upstream
   - python -m PyInstaller --onefile --console --name OpenJarvis --hidden-import openjarvis.cli --hidden-import click --collect-all openjarvis src/openjarvis/cli/__main__.py
