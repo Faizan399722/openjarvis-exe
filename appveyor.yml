@@ -3,19 +3,17 @@ image: Visual Studio 2022
 platform: x64
 clone_depth: 1
 environment:
-  PYTHON: "C:\\Python312-x64"
+  PYTHON: "C:\Python312-x64"
 install:
-  - ps: $env:PATH = "$env:PYTHON;$env:PYTHON\\Scripts;$env:PATH"
+  - ps: $env:PATH = "$env:PYTHON;$env:PYTHON\Scripts;$env:PATH"
   - python --version
   - pip --version
   - git clone --depth 1 https://github.com/open-jarvis/OpenJarvis.git upstream
-  - cd upstream
   - python -m pip install -U pip
   - python -m pip install pyinstaller
-  - python -m pip install .
+  - cd upstream && python -m pip install .
 build_script:
-  - cd upstream
-  - python -m PyInstaller --onefile --console --name OpenJarvis --hidden-import openjarvis.cli --hidden-import click --collect-all openjarvis src/openjarvis/cli/__main__.py
+  - cd upstream && python -m PyInstaller --onefile --console --name OpenJarvis --hidden-import openjarvis.cli --hidden-import click --collect-all openjarvis src/openjarvis/cli/__main__.py
 artifacts:
   - path: upstream/dist/OpenJarvis.exe
     name: OpenJarvis-exe
