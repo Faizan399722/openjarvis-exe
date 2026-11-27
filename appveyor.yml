@@ -11,7 +11,7 @@ install:
   - pip --version
   - git clone --depth 1 https://github.com/open-jarvis/OpenJarvis.git upstream
   - ps: Invoke-WebRequest -Uri https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile $env:TEMP\rustup-init.exe
-  - cmd: "%TEMP%\rustup-init.exe -y --default-toolchain stable --profile minimal"
+  - ps: & $env:TEMP\rustup-init.exe -y --default-toolchain stable --profile minimal
   - cargo --version
   - rustc --version
   - python -m pip install -U pip
