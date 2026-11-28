@@ -9,8 +9,7 @@ install:
   - ps: $env:PATH = "$env:PYTHON;$env:PYTHON\Scripts;$env:PATH"
   - python --version
   - pip --version
-  - git clone --depth 1 https://github.com/open-jarvis/OpenJarvis.git upstream
-    ps: - python apply-text-mode.py
+  - git clone --depth 1 https://github.com/open-jarvis/OpenJarvis.git upstream && python apply-text-mode.py
   - ps: Invoke-WebRequest -Uri https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -OutFile $env:TEMP\rustup-init.exe
   - '"%TEMP%\rustup-init.exe" -y --default-toolchain stable --profile minimal'
   - cargo --version
